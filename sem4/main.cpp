@@ -76,21 +76,28 @@ int main(){
   std::map<int,int> vec1_map;
   std::map<int,int> vec2_map;
 
-  for (int i : vector1){
-    vec1_map[i]++;
+  for (int i : vector1) {
+    if (vec1_map.count(i) > 0) {
+      vec1_map[i]++;
+    } else {vec1_map[i] = 1;}
   }
-  for (int i : vector2){
-    vec2_map[i]++;
+
+  for (int i : vector2) {
+    if (vec2_map.count(i) > 0) {
+      vec2_map[i]++;
+    } else {vec2_map[i] = 1;}
   }
   
   std::cout << "File1: \n";
-  for (auto [numb,cnt] : vec1_map){
-    std::cout << numb << " : " << cnt << " || ";
+  for (const std::pair<const int, int>& p : vec1_map) {
+    std::cout << p.first << " : " << p.second << " || ";
   }
+
   std::cout << "\nFile2: \n";
-  for (auto [numb,cnt] : vec2_map){
-    std::cout << numb << " : " << cnt << " || ";
+  for (const std::pair<const int, int>& p : vec2_map) {
+    std::cout << p.first << " : " << p.second << " || ";
   }
+
   
   std::cout << "\n\nAnother tray\nFile1\n";
   for (int i : vector1) {
@@ -145,6 +152,7 @@ int main(){
         std::cout << "Num " << num << " in vector1: " << count1 << ", in vectir2: " << count2 << "\n";
     }
   }
+
 
   std::vector<int> final_numbers;
   std::copy_if(unic_v2.begin(), unic_v2.end(), std::back_inserter(final_numbers), 
